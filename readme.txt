@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: fareharbor
-Tags: reservations, booking, embeds, fareharbor
+Tags: reservations, booking calendar, booking, reservation plugin, reservation calendar, booking system, 
 Requires at least: 3.0
 Tested up to: 3.4
 Stable tag: trunk
@@ -15,7 +15,7 @@ Adds a shortcode that makes it easy to embed FareHarbor's free booking reservati
 
 Usage example: [fareharbor shortname=“companyname” type=“small” items=“500” lightframe=“yes”]
 
-## Available Options
+**Available Options**
 
 * `shortname`: Your company’s FareHarbor shortname. Required.
 * `type`: What style of embed should be used. Available options are large, small, and button. Optional, if no type is provided the small calendar style will be used.
