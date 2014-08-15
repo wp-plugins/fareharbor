@@ -1,7 +1,7 @@
 <?
   /*
-    Plugin Name: FareHarbor
-    Plugin URI: https://fareharbor.com
+    Plugin Name: FareHarbor Reservation Calendars
+    Plugin URI: https://fareharbor.com/help/setup/wordpress-plugin/
     Description: Adds shortcodes for adding FareHarbor embeds to your site
     Version: 0.5
     Author: FareHarbor

@@ -11,7 +11,7 @@ Adds shortcodes for FareHarbor reservation booking calendar embeds to your site
 
 == Description ==
 
-Adds a shortcode that makes it easy to add FareHarbor embed calendars to your site. You'll need to be on FareHarbor for this to be useful, learn about it at https://fareharbor.com/.
+Adds a shortcode that makes it easy to embed FareHarbor's free booking reservation calendars on your site. Learn more about the FareHarbor reservation system at [fareharbor.com](https://fareharbor.com/ "Free reservation software").
 
 Usage example: [fareharbor shortname=“companyname” type=“small” items=“500” lightframe=“yes”]
 
@@ -30,6 +30,11 @@ Usage example: [fareharbor shortname=“companyname” type=“small” items=�
 1. Upload the `fareharbor` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Place the `[fareharbor shortname="companyname"]` shortcode in your templates
+
+== Screenshots ==
+
+1. Generated reservations calendar
+2. Lightframe booking options: customers book your activitiy without leaving your website
 
 == Changelog ==
 
