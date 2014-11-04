@@ -1,8 +1,8 @@
 === Plugin Name ===
 Contributors: fareharbor
-Tags: reservations, booking calendar, booking, reservation plugin, reservation calendar, booking system, 
+Tags: reservations, booking calendar, booking, reservation plugin, reservation calendar, booking system
 Requires at least: 3.0
-Tested up to: 3.4
+Tested up to: 4.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,7 +22,8 @@ Usage example: [fareharbor shortname=“companyname” type=“small” items=�
 * `items`: IDs of the items that should be included in the calendar. Optional, if no items are provided a calendar of all your items will be displayed.
 * `lightframe`: Use “yes” or “no” to enable or disable the on-site Lightframe booking. Optional, is yes by default.
 * `asn`: Your company’s shortname if you are using the ASN network. (If used, shortname should be the name of your partner company.) Optional.
-* `ref`: The voucher number that should be set for ASN bookings. Optional.
+* `asn_ref`: The voucher number that should be set for ASN bookings. Optional.
+* `ref`: The online booking reference that should be set for bookings. Optional.
 
 == Installation ==
 
@@ -37,6 +38,9 @@ Usage example: [fareharbor shortname=“companyname” type=“small” items=�
 2. Lightframe booking options: customers book your activitiy without leaving your website
 
 == Changelog ==
+
+= 0.6 =
+* Fix for ASN reference
 
 = 0.5 =
 * Initial implementation

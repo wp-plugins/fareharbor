@@ -3,7 +3,7 @@
     Plugin Name: FareHarbor Reservation Calendars
     Plugin URI: https://fareharbor.com/help/setup/wordpress-plugin/
     Description: Adds shortcodes for adding FareHarbor embeds to your site
-    Version: 0.5
+    Version: 0.6
     Author: FareHarbor
     Author URI: https://fareharbor.com
   */
@@ -17,6 +17,7 @@
   DEFINE("FH_ITEMS", "");
   DEFINE("FH_LIGHTFRAME", "yes");
   DEFINE("FH_ASN", "");
+  DEFINE("FH_ASN_REF", "");
   DEFINE("FH_REF", "");
 
   function fareharbor_handler($incomingfrompost) {
@@ -29,6 +30,7 @@
       "items" => FH_ITEMS,
       "lightframe" => FH_LIGHTFRAME,
       "asn" => FH_ASN,
+      "asn_ref" => FH_ASN_REF,
       "ref" => FH_REF
     ), $incomingfrompost);
 
@@ -85,11 +87,15 @@
       $fh_query_string_options = array('lightframe' => $fh_options["lightframe"]);
 
       if ( !empty( $fh_options["asn"] ) ) {      
-        $fh_query_string_options['asn'] = $fh_options["asn"];
+        $fh_query_string_options["asn"] = $fh_options["asn"];
+        
+        if( !empty( $fh_options["asn_ref"] ) ) {
+          $fh_query_string_options["asn-ref"] = $fh_options["asn_ref"];
+        }
       }
       
       if ( !empty( $fh_options["ref"] ) ) {
-        $fh_query_string_options['asn'] = $fh_options["asn"];
+        $fh_query_string_options["ref"] = $fh_options["ref"];
       }
       
       $fh_output .= http_build_query($fh_query_string_options);
