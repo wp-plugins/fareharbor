@@ -13,14 +13,14 @@ Adds shortcodes for FareHarbor reservation booking calendar embeds to your site
 
 Adds a shortcode that makes it easy to embed FareHarbor's free booking reservation calendars on your site. Learn more about the FareHarbor reservation system at [fareharbor.com](https://fareharbor.com/ "Free reservation software").
 
-Usage example: [fareharbor shortname=“companyname” type=“small” items=“500” lightframe=“yes”]
+Usage example: [fareharbor shortname=companyname type=small items=500 lightframe=yes]
 
 **Available Options**
 
 * `shortname`: Your company’s FareHarbor shortname. Required.
 * `type`: What style of embed should be used. Available options are large, small, and button. Optional, if no type is provided the small calendar style will be used.
 * `items`: IDs of the items that should be included in the calendar. Optional, if no items are provided a calendar of all your items will be displayed.
-* `lightframe`: Use “yes” or “no” to enable or disable the on-site Lightframe booking. Optional, is yes by default.
+* `lightframe`: Use "yes" or "no" to enable or disable the on-site Lightframe booking. Optional, is yes by default.
 * `asn`: Your company’s shortname if you are using the ASN network. (If used, shortname should be the name of your partner company.) Optional.
 * `asn_ref`: The voucher number that should be set for ASN bookings. Optional.
 * `ref`: The online booking reference that should be set for bookings. Optional.
@@ -41,6 +41,7 @@ Usage example: [fareharbor shortname=“companyname” type=“small” items=�
 
 = 0.6 =
 * Fix for ASN reference
+* Readme update
 
 = 0.5 =
 * Initial implementation
