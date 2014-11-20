@@ -7,30 +7,34 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Adds shortcodes for FareHarbor reservation booking calendar embeds to your site
+Adds shortcodes for FareHarbor reservation booking calendar embeds and buttons to your site
 
 == Description ==
 
-Adds a shortcode that makes it easy to embed FareHarbor's free booking reservation calendars on your site. Learn more about the FareHarbor reservation system at [fareharbor.com](https://fareharbor.com/ "Free reservation software").
+Adds shortcodes that makes it easy to embed FareHarbor's free booking reservation calendars or buttons on your site. Learn more about the FareHarbor reservation system at [fareharbor.com](https://fareharbor.com/ "Free reservation software").
 
-Usage example: [fareharbor shortname=companyname type=small items=500 lightframe=yes]
+Usage example: `[fareharbor shortname="companyname" items="500" lightframe="yes"]`.
 
-**Available Options**
-
-* `shortname`: Your company’s FareHarbor shortname. Required.
-* `type`: What style of embed should be used. Available options are large, small, and button. Optional, if no type is provided the small calendar style will be used.
-* `items`: IDs of the items that should be included in the calendar. Optional, if no items are provided a calendar of all your items will be displayed.
-* `lightframe`: Use "yes" or "no" to enable or disable the on-site Lightframe booking. Optional, is yes by default.
-* `asn`: Your company’s shortname if you are using the ASN network. (If used, shortname should be the name of your partner company.) Optional.
-* `asn_ref`: The voucher number that should be set for ASN bookings. Optional.
-* `ref`: The online booking reference that should be set for bookings. Optional.
+For more examples and available options, please visit <https://fareharbor.com/help/setup/wordpress-plugin/>.
 
 == Installation ==
 
+## From the WordPress plugin directory (recommended):
+
+1. Navigate to Plugins > Add New in your WordPress Dashboard
+1. Search for "FareHarbor"
+1. Click Install on the "FareHarbor Reservation Calendars" plugin
+1. Activate the plugin
+
+## By direct upload:
+
 1. Download the plugin and unzip it.
-1. Upload the `fareharbor` folder to the `/wp-content/plugins/` directory
+1. Upload the fareharbor folder to your /wp-content/plugins/ directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place the `[fareharbor shortname="companyname"]` shortcode in your templates
+
+## Then
+
+Use the `[fareharbor shortname="companyname"]` or `[lightframe shortname="companyname"][/lightframe]` shortcodes in your posts or pages.
 
 == Screenshots ==
 
@@ -39,9 +43,11 @@ Usage example: [fareharbor shortname=companyname type=small items=500 lightframe
 
 == Changelog ==
 
+= 0.7 =
+* Add [lightframe] shortcode
+
 = 0.6 =
 * Fix for ASN reference
-* Readme update
 
 = 0.5 =
-* Initial implementation
+* Initial public implementation
