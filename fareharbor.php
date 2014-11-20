@@ -3,7 +3,7 @@
     Plugin Name: FareHarbor Reservation Calendars
     Plugin URI: https://fareharbor.com/help/setup/wordpress-plugin/
     Description: Adds shortcodes for adding FareHarbor embeds to your site
-    Version: 0.7
+    Version: 0.7.1
     Author: FareHarbor
     Author URI: https://fareharbor.com
   */
@@ -188,7 +188,7 @@
 
       // If the view is a string type, just write it in
 
-      if ($attrs["view"] == 'items' || $attrs["view"] == 'all-availabilities') {
+      if ($attrs["view"] == 'items' || $attrs["view"] == 'all-availability') {
         $lightframe_options["view"] = $attrs["view"];
       }
       

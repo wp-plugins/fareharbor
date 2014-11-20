@@ -43,6 +43,9 @@ Use the `[fareharbor shortname="companyname"]` or `[lightframe shortname="compan
 
 == Changelog ==
 
+= 0.7.1 =
+* Fix discrepancy with documentation
+
 = 0.7 =
 * Add [lightframe] shortcode
 
