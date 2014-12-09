@@ -3,7 +3,7 @@
     Plugin Name: FareHarbor Reservation Calendars
     Plugin URI: https://fareharbor.com/help/setup/wordpress-plugin/
     Description: Adds shortcodes for adding FareHarbor embeds to your site
-    Version: 0.7.1
+    Version: 0.8
     Author: FareHarbor
     Author URI: https://fareharbor.com
   */
@@ -31,6 +31,14 @@
   // ---------------------------------------------
 
   function fareharbor_handler($incomingfrompost) {
+
+    // Preprocess attributes returned from post: Strip smart quotes, because WordPress
+    // returns them as part of the value if the shortcode was set up using them.
+
+    $incomingfrompost = str_replace(
+      array("\xe2\x80\x98", "\xe2\x80\x99", "\xe2\x80\x9c", "\xe2\x80\x9d", chr(145), chr(146), chr(147), chr(148)),
+      array('', '', '', '', '', '', '', ''),
+    $incomingfrompost);
 
     // Process options and assign defaults if needed
     
@@ -122,6 +130,14 @@
   
   function lightframe_api_handler($attributes, $content = null) {
     
+    // Preprocess attributes returned from post: Strip smart quotes, because WordPress
+    // returns them as part of the value if the shortcode was set up using them.
+  
+    $attributes = str_replace(
+      array("\xe2\x80\x98", "\xe2\x80\x99", "\xe2\x80\x9c", "\xe2\x80\x9d", chr(145), chr(146), chr(147), chr(148)),
+      array('', '', '', '', '', '', '', ''),
+    $attributes);
+    
     // Process options and assign defaults if needed
 
   	$attrs = shortcode_atts(array(
@@ -204,7 +220,7 @@
     
     	$output .= '<a href="' . $fallback_url . '" ';
     
-      $output .= 'onclick=\'FH.open(' . json_encode($lightframe_options) . '); return false;\'>';
+      $output .= 'onclick="FH.open(' . str_replace('"',"'", json_encode($lightframe_options)) . '); return false;">';
       
       $output .= do_shortcode( $content ) . '</a>';
     }

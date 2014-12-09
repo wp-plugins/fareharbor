@@ -2,7 +2,7 @@
 Contributors: fareharbor
 Tags: reservations, booking calendar, booking, reservation plugin, reservation calendar, booking system
 Requires at least: 3.0
-Tested up to: 4.0
+Tested up to: 4.0.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -42,6 +42,10 @@ Use the `[fareharbor shortname="companyname"]` or `[lightframe shortname="compan
 2. Lightframe booking options: customers book your activitiy without leaving your website
 
 == Changelog ==
+
+= 0.8 =
+* Strip smart quotes returned with shortcode values
+* Adjust onClick attribute to work better with other plugins
 
 = 0.7.1 =
 * Fix discrepancy with documentation
