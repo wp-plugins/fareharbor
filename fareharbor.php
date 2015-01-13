@@ -3,7 +3,7 @@
     Plugin Name: FareHarbor Reservation Calendars
     Plugin URI: https://fareharbor.com/help/setup/wordpress-plugin/
     Description: Adds shortcodes for adding FareHarbor embeds to your site
-    Version: 0.8
+    Version: 0.8.1
     Author: FareHarbor
     Author URI: https://fareharbor.com
   */
@@ -22,10 +22,13 @@
   DEFINE("FH_ASN", "");
   DEFINE("FH_ASN_REF", "");
   DEFINE("FH_REF", "");
+  DEFINE("FH_CLASS", "");
+  DEFINE("FH_ID", "");
   
   DEFINE("FH_API_VIEW", "items");
   DEFINE("FH_API_VIEW_ITEM", "");
   DEFINE("FH_API_VIEW_AVAILABILITY", "");
+
 
   // [fareharbor] shortcode
   // ---------------------------------------------
@@ -148,6 +151,9 @@
       "items" => FH_ITEMS,
       "lightframe" => FH_LIGHTFRAME,
 
+      "class" => FH_CLASS,
+      "id" => FH_ID,
+
       "view" => FH_API_VIEW,
       "view_item" => FH_API_VIEW_ITEM,
       "view_availability" => FH_API_VIEW_AVAILABILITY
@@ -219,6 +225,14 @@
       }
     
     	$output .= '<a href="' . $fallback_url . '" ';
+    	
+      if ( !empty( $attrs["class"] ) ) {
+      	$output .= 'class="' . $attrs["class"] .'" ';
+      }
+      
+      if ( !empty( $attrs["id"] ) ) {
+      	$output .= 'id="' . $attrs["id"] .'" ';
+      }
     
       $output .= 'onclick="FH.open(' . str_replace('"',"'", json_encode($lightframe_options)) . '); return false;">';
       
