@@ -3,7 +3,7 @@
     Plugin Name: FareHarbor Reservation Calendars
     Plugin URI: https://fareharbor.com/help/setup/wordpress-plugin/
     Description: Adds shortcodes for adding FareHarbor embeds to your site
-    Version: 0.8.1
+    Version: 0.9
     Author: FareHarbor
     Author URI: https://fareharbor.com
   */
@@ -35,8 +35,11 @@
 
   function fareharbor_handler($incomingfrompost) {
 
-    // Preprocess attributes returned from post: Strip smart quotes, because WordPress
-    // returns them as part of the value if the shortcode was set up using them.
+    // Preprocess attributes returned from post. Trim whitespace.
+
+    $incomingfrompost = array_map('trim', $incomingfrompost);
+
+    // Strip smart quotes, because WordPress returns them as part of the value if the shortcode was set up using them.
 
     $incomingfrompost = str_replace(
       array("\xe2\x80\x98", "\xe2\x80\x99", "\xe2\x80\x9c", "\xe2\x80\x9d", chr(145), chr(146), chr(147), chr(148)),
@@ -54,7 +57,11 @@
       "asn_ref" => FH_ASN_REF,
       "ref" => FH_REF
     ), $incomingfrompost);
-
+    
+    // Clean up item IDs: strip spaces and trailing commas
+  
+    $incomingfrompost["items"] = str_replace(" ", "", $incomingfrompost["items"]);
+    $incomingfrompost["items"] = rtrim($incomingfrompost["items"], ",");
 
     $fh_final_output = fareharbor_function($incomingfrompost);
   
@@ -133,9 +140,12 @@
   
   function lightframe_api_handler($attributes, $content = null) {
     
-    // Preprocess attributes returned from post: Strip smart quotes, because WordPress
-    // returns them as part of the value if the shortcode was set up using them.
-  
+    // Preprocess attributes returned from post. Trim whitespace.
+
+    $attributes = array_map('trim', $attributes);
+
+    // Strip smart quotes, because WordPress returns them as part of the value if the shortcode was set up using them.
+
     $attributes = str_replace(
       array("\xe2\x80\x98", "\xe2\x80\x99", "\xe2\x80\x9c", "\xe2\x80\x9d", chr(145), chr(146), chr(147), chr(148)),
       array('', '', '', '', '', '', '', ''),
@@ -158,6 +168,15 @@
       "view_item" => FH_API_VIEW_ITEM,
       "view_availability" => FH_API_VIEW_AVAILABILITY
   	), $attributes);
+
+    // Clean up item IDs: strip spaces and trailing commas
+  
+    $attrs["items"] = str_replace(" ", "", $attrs["items"]);
+    $attrs["items"] = rtrim($attrs["items"], ",");
+  
+    $attrs["view_item"] = rtrim($attrs["view_item"], ",");
+  	
+    $output = '';
 
     if ( empty( $attrs["shortname"] ) ) {
   
