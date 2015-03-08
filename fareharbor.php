@@ -3,7 +3,7 @@
     Plugin Name: FareHarbor Reservation Calendars
     Plugin URI: https://fareharbor.com/help/setup/wordpress-plugin/
     Description: Adds shortcodes for adding FareHarbor embeds to your site
-    Version: 0.9
+    Version: 1.0
     Author: FareHarbor
     Author URI: https://fareharbor.com
   */
@@ -25,6 +25,7 @@
   DEFINE("FH_CLASS", "");
   DEFINE("FH_ID", "");
   
+  DEFINE("FH_FULL_ITEMS", "no");
   DEFINE("FH_API_VIEW", "items");
   DEFINE("FH_API_VIEW_ITEM", "");
   DEFINE("FH_API_VIEW_AVAILABILITY", "");
@@ -164,6 +165,8 @@
       "class" => FH_CLASS,
       "id" => FH_ID,
 
+      "full_items" => FH_FULL_ITEMS,
+
       "view" => FH_API_VIEW,
       "view_item" => FH_API_VIEW_ITEM,
       "view_availability" => FH_API_VIEW_AVAILABILITY
@@ -188,10 +191,11 @@
 
     } else {
   
-      // Build fallback url
+      // Fallback URL
+      // ---------------------------------------------
       
       $fallback_url = 'https://fareharbor.com/';
-      $fallback_url .= $attrs["shortname"] . '/?';
+      $fallback_url .= $attrs["shortname"] . '/';
 
       $fallback_url_query_string = array();
 
@@ -207,11 +211,21 @@
         $fallback_url_query_string["ref"] = $attrs["ref"];
       }
       
-      $fallback_url .= http_build_query($fallback_url_query_string);
+      if( !empty( $fallback_url_query_string ) ) {
+        $fallback_url .= '?';
+        $fallback_url .= http_build_query($fallback_url_query_string);
+      }
 
-      // JSON dictonary for Lightframe Javascript API
+      // $lightframe_options array, to be JSONified for Lightframe API call
+      // ---------------------------------------------
       
-      $lightframe_options = array('shortname' => $attrs["shortname"]);
+      $lightframe_options["shortname"] = $attrs["shortname"];
+      
+      // We should still set a default for full_items, but avoid writing it in if it's just a 'no'
+
+      if ( $attrs["full_items"] != 'no' ) {  
+        $lightframe_options["fullItems"] = $attrs["full_items"];
+      }
       
       if ( !empty( $attrs["asn"] ) ) {      
         $lightframe_options["asn"] = $attrs["asn"];
@@ -224,9 +238,11 @@
       if ( !empty( $attrs["ref"] ) ) {
         $lightframe_options["ref"] = $attrs["ref"];
       }
-    
-      $lightframe_options["items"] = array($attrs["items"]); // Put these in an array so it gets brackets
 
+      if ( !empty( $attrs["items"] ) ) {
+        $lightframe_options["items"] = array($attrs["items"]); // Put these in an array so it gets brackets
+      }
+      
       // If the view is a string type, just write it in
 
       if ($attrs["view"] == 'items' || $attrs["view"] == 'all-availability') {
@@ -242,7 +258,10 @@
       if ( !empty( $attrs["view_item"] ) && !empty( $attrs["view_availability"] )) {
         $lightframe_options["view"] = array( 'item' => $attrs["view_item"], 'availability' => $attrs["view_availability"] );
       }
-    
+
+      // Put it all together now
+      // ---------------------------------------------
+
     	$output .= '<a href="' . $fallback_url . '" ';
     	
       if ( !empty( $attrs["class"] ) ) {

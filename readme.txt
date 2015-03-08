@@ -43,6 +43,9 @@ Use the `[fareharbor shortname="companyname"]` or `[lightframe shortname="compan
 
 == Changelog ==
 
+= 1.0 =
+* Add support for displaying full item information (`full_items="yes"`)
+
 = 0.9 =
 * Strip spaces and trailing commas from item ID list
 * Fix potential PHP warnings with $output
