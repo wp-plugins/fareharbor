@@ -3,7 +3,7 @@
     Plugin Name: FareHarbor Reservation Calendars
     Plugin URI: https://fareharbor.com/help/setup/wordpress-plugin/
     Description: Adds shortcodes for adding FareHarbor embeds to your site
-    Version: 1.0
+    Version: 1.1
     Author: FareHarbor
     Author URI: https://fareharbor.com
   */
@@ -195,7 +195,41 @@
       // ---------------------------------------------
       
       $fallback_url = 'https://fareharbor.com/';
-      $fallback_url .= $attrs["shortname"] . '/';
+      $fallback_url .= $attrs["shortname"] . '/items/';
+
+      if( !empty( $attrs["items"] ) ) {
+        
+        // If filtering but just to one item, link to it
+
+        $fallback_items = explode(',', $attrs["items"]);
+        
+        if( count($fallback_items) == 1 ) {
+          $fallback_url .= $fallback_items[0] . '/';
+          
+          if( $attrs["full_items"] == 'no' ) {
+            $fallback_url .= 'calendar/';
+          }
+        }
+
+      } else {
+
+        if( $attrs["view"] == 'all-availability' ) {
+          $fallback_url .= 'calendar/';
+        }
+  
+        if( !empty( $attrs["view_item"] ) ) {
+          $fallback_url .= $attrs["view_item"] . '/';
+          
+          if( $attrs["full_items"] == 'no' && empty( $attrs["view_availability"] ) ) {
+            $fallback_url .= 'calendar/';
+          }
+        }
+        
+        if( !empty( $attrs["view_availability"] ) ) {
+          $fallback_url .= 'availability/' . $attrs["view_availability"] . '/book/';
+        }
+
+      }
 
       $fallback_url_query_string = array();
 
@@ -251,11 +285,11 @@
       
       // If the view is not a string type, you need to pass just view_item= OR view_item= and view_availability= 
 
-      if ( !empty( $attrs["view_item"] ) && empty( $attrs["view_availability"] )) {
+      if( !empty( $attrs["view_item"] ) && empty( $attrs["view_availability"] )) {
         $lightframe_options["view"] = array( 'item' => $attrs["view_item"] );
       }
       
-      if ( !empty( $attrs["view_item"] ) && !empty( $attrs["view_availability"] )) {
+      if( !empty( $attrs["view_item"] ) && !empty( $attrs["view_availability"] )) {
         $lightframe_options["view"] = array( 'item' => $attrs["view_item"], 'availability' => $attrs["view_availability"] );
       }
 
