@@ -43,6 +43,9 @@ Use the `[fareharbor shortname="companyname"]` or `[lightframe shortname="compan
 
 == Changelog ==
 
+= 1.1 =
+* Generate better Lightframe fallback URLs
+
 = 1.0 =
 * Add support for displaying full item information (`full_items="yes"`)
 
